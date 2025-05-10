@@ -24,14 +24,22 @@ const Sequencer = ({ sequence, setSequence }) => {
                 else if (index < 8) colorClass = "color-b";
                 else if (index < 12) colorClass = "color-c";
                 else colorClass = "color-d";
-                console.log("instrument: ", instrument);
 
                 return (
                   <div
                     key={index}
                     className={`stepbutton ${colorClass}`}
                     onClick={() => toggleStep(instrument, index)}
-                  ></div>
+                  >
+                    <div
+                      className={
+                        sequence[instrument][index]
+                          ? "redbutton"
+                          : "blackbutton"
+                      }
+                    ></div>
+                    <div className="innerstepbutton"></div>
+                  </div>
                 );
               })}
             </div>

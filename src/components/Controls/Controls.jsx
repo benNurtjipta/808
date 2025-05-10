@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-export default function Controls({ sequence }) {
+export default function Controls({ sequence, setSequence }) {
   const [bpm, setBpm] = useState(120);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioCtxRef = useRef(null);
@@ -10,6 +10,11 @@ export default function Controls({ sequence }) {
   const schedulerIdRef = useRef(null);
   const startTimeRef = useRef(null);
   const stepIntervalRef = useRef(60 / bpm / 4);
+  const sequenceRef = useRef(sequence);
+
+  useEffect(() => {
+    sequenceRef.current = sequence;
+  }, [sequence]);
 
   useEffect(() => {
     async function loadSamples() {
@@ -37,8 +42,10 @@ export default function Controls({ sequence }) {
 
   function scheduleStep(stepIndex, time) {
     const samples = samplesRef.current;
-    for (const instrument in sequence) {
-      if (sequence[instrument][stepIndex]) {
+    const currentSequence = sequenceRef.current;
+
+    for (const instrument in currentSequence) {
+      if (currentSequence[instrument][stepIndex]) {
         playSound(samples[instrument], time);
       }
     }
@@ -83,8 +90,45 @@ export default function Controls({ sequence }) {
     }
   }
 
+  const handleReset = () => {
+    setSequence((prev) => {
+      const reset = {};
+      for (const instrument in prev) {
+        reset[instrument] = prev[instrument].map(() => false);
+      }
+      return reset;
+    });
+  };
+
+  useEffect(() => {
+    function handleKeyDown(event) {
+      if (event.code === "Space") {
+        event.preventDefault();
+        if (isPlaying) {
+          handleStop();
+        } else {
+          handleStart();
+        }
+      }
+    }
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isPlaying]);
+
   return (
     <div className="controls">
+      <button className="controlbtn" onClick={handleStart} disabled={isPlaying}>
+        START
+      </button>
+      <button className="controlbtn" onClick={handleStop} disabled={!isPlaying}>
+        STOP
+      </button>
+      <button className="controlbtn" onClick={handleReset}>
+        RESET
+      </button>
       <label>
         BPM:
         <input
@@ -95,12 +139,6 @@ export default function Controls({ sequence }) {
           onChange={(e) => handleBpmChange(parseInt(e.target.value, 10))}
         />
       </label>
-      <button onClick={handleStart} disabled={isPlaying}>
-        Start
-      </button>
-      <button onClick={handleStop} disabled={!isPlaying}>
-        Stop
-      </button>
     </div>
   );
 }

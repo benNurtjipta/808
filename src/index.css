@@ -41,7 +41,7 @@ body {
   flex-direction: row;
   width: 100%;
   height: 2.5rem;
-  background: linear-gradient(90deg, rgb(27, 17, 50), rgb(46, 33, 76));
+  background: linear-gradient(90deg, #262626, #424242);
 
   padding: 0.5rem 0.6rem;
   border-bottom: 1px var(--kindawhite) solid;
@@ -64,8 +64,19 @@ body {
 }
 
 .stepbutton {
-  width: 32px;
-  height: 50px;
+  width: 38px;
+  height: 65px;
+  background-color: transparent;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5),
+    0px -2px 4px rgba(255, 255, 255, 0.1);
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.stepbutton:active {
+  transform: translateY(2px);
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.5),
+    0px -1px 2px rgba(255, 255, 255, 0.1);
 }
 
 .sequencer {
@@ -75,6 +86,7 @@ body {
   flex-direction: column;
   margin: 4rem 0;
   gap: 1.5rem;
+  transform: translateX(-50px);
 }
 
 .instr-name {
@@ -107,4 +119,65 @@ body {
 }
 .color-d {
   background-color: var(--kindawhite);
+}
+
+.blackbutton {
+  margin: 0.3rem auto;
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(
+    circle at top right,
+    rgba(91, 91, 91, 0.3),
+    rgb(0, 0, 0)
+  );
+  border-radius: 50%;
+  border: 1px rgba(0, 0, 0, 0.236) solid;
+}
+
+.redbutton {
+  margin: 0.3rem auto;
+  width: 14px;
+  height: 14px;
+  background: radial-gradient(
+    circle at top right,
+    rgba(255, 57, 57, 0.574),
+    rgb(255, 0, 0)
+  );
+  border-radius: 50%;
+  border: 1px rgba(0, 0, 0, 0.181) solid;
+}
+
+.innerstepbutton {
+  width: 38px;
+  height: 34px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 2px #6161617c, 0px -1px 2px #d5d5d57e;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 1.5rem;
+  border: 1px solid var(--kindawhite);
+  border-radius: 6px;
+  padding: 1rem;
+  background-color: #262626;
+}
+
+.controls input {
+  margin-left: 0.5rem;
+  border: none;
+  border-radius: 4px;
+  padding: 0.3rem;
+  font-family: Helvetica, sans-serif;
+}
+
+.controlbtn {
+  font-family: Helvetica, sans-serif;
+  border-radius: 4px;
+  padding: 0.3rem;
+  background-color: #4b4a4a;
+  color: var(--kindawhite);
 }

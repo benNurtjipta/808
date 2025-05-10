@@ -6,19 +6,19 @@ import { useState } from "react";
 const App = () => {
   const [sequence, setSequence] = useState({
     kick: [
-      true,
       false,
       false,
       false,
-      true,
       false,
       false,
       false,
-      true,
       false,
       false,
       false,
-      true,
+      false,
+      false,
+      false,
+      false,
       false,
       false,
       false,
@@ -28,7 +28,6 @@ const App = () => {
       false,
       false,
       false,
-      true,
       false,
       false,
       false,
@@ -36,7 +35,8 @@ const App = () => {
       false,
       false,
       false,
-      true,
+      false,
+      false,
       false,
       false,
       false,
@@ -62,19 +62,19 @@ const App = () => {
     ophh: [
       false,
       false,
-      true,
       false,
       false,
       false,
-      true,
       false,
       false,
       false,
-      true,
       false,
       false,
       false,
-      true,
+      false,
+      false,
+      false,
+      false,
       false,
     ],
     cowbell: [
@@ -119,7 +119,7 @@ const App = () => {
     <section className="main">
       <Header />
       <Sequencer sequence={sequence} setSequence={setSequence} />
-      <Controls sequence={sequence} />
+      <Controls sequence={sequence} setSequence={setSequence} />
     </section>
   );
 };
