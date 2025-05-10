@@ -59,7 +59,7 @@ const App = () => {
       false,
       false,
     ],
-    openhh: [
+    ophh: [
       false,
       false,
       true,

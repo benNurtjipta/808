@@ -4,7 +4,7 @@ const Header = () => {
       <div className="logo">
         <img src="/buttons.png" alt="buttons" className="buttons808" />
       </div>
-      <h2>808 Simple Sequencer</h2>
+      <h2>808 - simple seq</h2>
     </section>
   );
 };

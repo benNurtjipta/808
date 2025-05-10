@@ -5,6 +5,13 @@
   font-style: normal;
 }
 
+:root {
+  --red: #cc131a;
+  --orange: #f57916;
+  --yellow: #e7e81e;
+  --kindawhite: #e2e0bf;
+}
+
 * {
   margin: 0;
   box-sizing: border-box;
@@ -15,7 +22,7 @@
 
 body {
   background-color: black;
-  color: lightgray;
+  color: var(--kindawhite);
   font-family: "ITC-Serif", sans-serif;
   overflow-x: hidden;
 }
@@ -33,7 +40,11 @@ body {
   align-items: center;
   flex-direction: row;
   width: 100%;
-  height: 1.5rem;
+  height: 2.5rem;
+  background: linear-gradient(90deg, rgb(27, 17, 50), rgb(46, 33, 76));
+
+  padding: 0.5rem 0.6rem;
+  border-bottom: 1px var(--kindawhite) solid;
 }
 
 .logowrapper h2 {
@@ -50,4 +61,50 @@ body {
   width: 3rem;
   height: 1.5rem;
   overflow: hidden;
+}
+
+.stepbutton {
+  width: 32px;
+  height: 50px;
+}
+
+.sequencer {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  margin: 4rem 0;
+  gap: 1.5rem;
+}
+
+.instr-name {
+  width: 100px;
+}
+
+.instr-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.outerseq {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.color-a {
+  background-color: var(--red);
+}
+.color-b {
+  background-color: var(--orange);
+}
+.color-c {
+  background-color: var(--yellow);
+}
+.color-d {
+  background-color: var(--kindawhite);
 }
