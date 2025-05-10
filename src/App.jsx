@@ -1,13 +1,125 @@
 import Controls from "./components/Controls/Controls";
 import Header from "./components/Header/Header";
 import Sequencer from "./components/Sequencer/Sequencer";
+import { useState } from "react";
 
 const App = () => {
+  const [sequence, setSequence] = useState({
+    kick: [
+      true,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+    ],
+    snare: [
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+    ],
+    clhh: [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+    ],
+    openhh: [
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      true,
+      false,
+    ],
+    cowbell: [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+    ],
+    rim: [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+    ],
+  });
+
   return (
-    <section>
+    <section className="main">
       <Header />
-      <Sequencer />
-      <Controls />
+      <Sequencer sequence={sequence} setSequence={setSequence} />
+      <Controls sequence={sequence} />
     </section>
   );
 };
