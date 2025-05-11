@@ -1,11 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 
-export default function Controls({ sequence, setSequence }) {
+export default function Controls({
+  sequence,
+  setSequence,
+  currentStepRef,
+  setCurrentStep,
+}) {
   const [bpm, setBpm] = useState(120);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioCtxRef = useRef(null);
   const samplesRef = useRef({});
-  const currentStepRef = useRef(0);
+
   const nextNoteTimeRef = useRef(0);
   const schedulerIdRef = useRef(null);
   const startTimeRef = useRef(null);
@@ -57,7 +62,7 @@ export default function Controls({ sequence, setSequence }) {
 
     while (nextNoteTimeRef.current < ctx.currentTime + lookahead) {
       scheduleStep(currentStepRef.current, nextNoteTimeRef.current);
-
+      setCurrentStep(currentStepRef.current);
       nextNoteTimeRef.current += stepIntervalRef.current;
       currentStepRef.current = (currentStepRef.current + 1) % 16;
     }
@@ -68,7 +73,7 @@ export default function Controls({ sequence, setSequence }) {
   async function handleStart() {
     await audioCtxRef.current.resume();
 
-    currentStepRef.current = 0;
+    // currentStepRef.current = 0;
     nextNoteTimeRef.current = audioCtxRef.current.currentTime;
     startTimeRef.current = audioCtxRef.current.currentTime;
 
@@ -76,7 +81,12 @@ export default function Controls({ sequence, setSequence }) {
     scheduler();
   }
 
-  function handleStop() {
+  function handleStop(e) {
+    if (!isPlaying) {
+      currentStepRef.current = 0;
+      setCurrentStep(0);
+    }
+
     setIsPlaying(false);
     cancelAnimationFrame(schedulerIdRef.current);
   }
@@ -123,7 +133,7 @@ export default function Controls({ sequence, setSequence }) {
       <button className="controlbtn" onClick={handleStart} disabled={isPlaying}>
         START
       </button>
-      <button className="controlbtn" onClick={handleStop} disabled={!isPlaying}>
+      <button className="controlbtn" onClick={handleStop}>
         STOP
       </button>
       <button className="controlbtn" onClick={handleReset}>
