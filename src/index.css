@@ -151,6 +151,13 @@ body {
   box-shadow: 0px 2px 2px #6161617c, 0px -1px 2px #d5d5d57e;
 }
 
+.controls-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
 .controls {
   display: flex;
   justify-content: center;
@@ -169,6 +176,8 @@ body {
   border-radius: 4px;
   padding: 0.3rem;
   font-family: Helvetica, sans-serif;
+  background-color: #424242;
+  color: var(--kindawhite);
 }
 
 .controlbtn {
@@ -177,6 +186,48 @@ body {
   padding: 0.3rem;
   background-color: #4b4a4a;
   color: var(--kindawhite);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.controlbtn:hover {
+  background-color: #5c5c5c;
+}
+
+.save-section {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.2rem;
+}
+
+.save-section input {
+  padding: 0.3rem;
+  border-radius: 4px;
+  border: 1px solid var(--kindawhite);
+  background-color: #262626;
+  color: var(--kindawhite);
+  font-family: Helvetica, sans-serif;
+}
+
+.save-section button {
+  font-family: Helvetica, sans-serif;
+  border-radius: 4px;
+  padding: 0.3rem;
+  background-color: #4b4a4a;
+  color: var(--kindawhite);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.save-section button:hover {
+  background-color: #5c5c5c;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
 }
 
 .lights {
